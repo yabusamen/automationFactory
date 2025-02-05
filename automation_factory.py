@@ -83,8 +83,9 @@ def main():
     automationFactory = AutomationFactory()
 
     # Allow the user of this program to either (1) Interact with the program by entering the dimmensions of a package. Or (2) run some default test cases
-    selection = input('Enter \'Y\' if you would like to enter package dimmensions yourself.\nOtherwise, enter \'N\' to run some default test cases for our package sorting program.\n')
-    if selection.lower() == "y":
+    selection = input('Enter \'Y\' if you would like to enter Interactive Mode (enter package dimmensions yourself).\nOtherwise, enter \'N\' to run some default test cases for our package sorting program.\n')
+    selection = selection.lower()
+    if selection == "y":
         while True: 
             width = input("Please enter the width (cm): ")
             height = input("Please enter the height (cm): ")
@@ -106,7 +107,7 @@ def main():
                 return
 
             print("This package is categorized as: " + automationFactory.sort(width_value, height_value, length_value, mass_value))
-    else: 
+    elif selection == 'n': 
         ''' DEFAULT TEST CASES BELOW '''
 
         # Expected: STANDARD
@@ -131,7 +132,8 @@ def main():
         print("TEST_10 (8.0, 18, 16, 190)\nExpected: SPECIAL.\tActual: " + automationFactory.sort(8.0, 18, 16, 190), end="\n\n")
         # Expected: STANDARD (This one should be heavy)
         print("TEST_11 (0.00001, 0.0003, 0.5, 0.3)\nExpected: STANDARD.\tActual: " + automationFactory.sort(0.00001, 0.0003, 0.5, 0.3), end="\n\n")
-        
+    else: 
+        print("Your selection was not one of the options. Please try again (enter Y or N)")
 
 if __name__=="__main__": 
     main()
